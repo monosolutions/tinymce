@@ -297,7 +297,7 @@ const applyFormat = function (ed, name, vars?, node?) {
     });
   };
 
-  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable == 'undefined') {
+  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable === 'undefined') {
     node = selection.getNode();
     for (let i = 0, l = formatList.length; i < l; i++) {
       if (formatList[i].ceFalseOverride && dom.is(node, formatList[i].selector)) {

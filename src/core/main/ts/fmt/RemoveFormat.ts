@@ -511,7 +511,7 @@ const remove = function (ed, name, vars?, node?, similar?) {
     return;
   }
 
-  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable == 'undefined') {
+  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable === 'undefined') {
     node = selection.getNode();
     for (let i = 0, l = formatList.length; i < l; i++) {
       if (formatList[i].ceFalseOverride) {
