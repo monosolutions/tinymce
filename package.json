@@ -16,7 +16,6 @@
     "node": ">=0.10.26"
   },
   "scripts": {
-    "install": "grunt",
     "test": "grunt bedrock-auto:chrome-headless",
     "lint": "tslint src/**/*.ts"
   },
