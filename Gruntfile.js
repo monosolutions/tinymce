@@ -69,7 +69,7 @@ module.exports = function (grunt) {
           files:[
             {
               src: 'lib/core/main/ts/api/Main.js',
-              dest: 'js/tinymce/tinymce.js'
+              dest: 'dist/tinymce.js'
             }
           ]
         }
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
               swag.remapImports()
             ]
           },
-          files:[ { src: `lib/plugins/${name}/main/ts/Plugin.js`, dest: `js/tinymce/plugins/${name}/plugin.js` } ]
+          files:[ { src: `lib/plugins/${name}/main/ts/Plugin.js`, dest: `dist/plugins/${name}/plugin.js` } ]
         };
       }),
       gruntUtils.generate(themes, 'theme', (name) => {
@@ -121,7 +121,7 @@ module.exports = function (grunt) {
           files:[
             {
               src: `lib/themes/${name}/main/ts/Theme.js`,
-              dest: `js/tinymce/themes/${name}/theme.js`
+              dest: `dist/themes/${name}/theme.js`
             }
           ]
         };
@@ -138,27 +138,27 @@ module.exports = function (grunt) {
         },
         core: {
           files: [
-            { src: 'js/tinymce/tinymce.js', dest: 'js/tinymce/tinymce.min.js' },
-            { src: 'src/core/main/js/JqueryIntegration.js', dest: 'js/tinymce/jquery.tinymce.min.js' }
+            { src: 'dist/tinymce.js', dest: 'dist/tinymce.min.js' },
+            { src: 'src/core/main/js/JqueryIntegration.js', dest: 'dist/jquery.tinymce.min.js' }
           ]
         },
         'compat3x-plugin': {
           files: [
             {
               src: 'src/plugins/compat3x/main/js/plugin.js',
-              dest: 'js/tinymce/plugins/compat3x/plugin.min.js'
+              dest: 'dist/plugins/compat3x/plugin.min.js'
             }
           ]
         }
       },
       gruntUtils.generate(plugins, 'plugin', (name) => {
         return {
-          files: [ { src: `js/tinymce/plugins/${name}/plugin.js`, dest: `js/tinymce/plugins/${name}/plugin.min.js` } ]
+          files: [ { src: `dist/plugins/${name}/plugin.js`, dest: `dist/plugins/${name}/plugin.min.js` } ]
         };
       }),
       gruntUtils.generate(themes, 'theme', (name) => {
         return {
-          files: [ { src: `js/tinymce/themes/${name}/theme.js`, dest: `js/tinymce/themes/${name}/theme.min.js` } ]
+          files: [ { src: `dist/themes/${name}/theme.js`, dest: `dist/themes/${name}/theme.min.js` } ]
         };
       })
     ),
@@ -196,7 +196,7 @@ module.exports = function (grunt) {
           optimization: 2
         },
         files: {
-          'js/tinymce/skins/lightgray/skin.min.css': 'src/skins/lightgray/main/less/desktop/Skin.less'
+          'dist/skins/lightgray/skin.min.css': 'src/skins/lightgray/main/less/desktop/Skin.less'
         }
       },
       mobile: {
@@ -209,7 +209,7 @@ module.exports = function (grunt) {
           optimization: 2
         },
         files: {
-          'js/tinymce/skins/lightgray/skin.mobile.min.css': 'src/skins/lightgray/main/less/mobile/app/mobile-less.less'
+          'dist/skins/lightgray/skin.mobile.min.css': 'src/skins/lightgray/main/less/mobile/app/mobile-less.less'
         }
       },
       'content-mobile': {
@@ -219,7 +219,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: {
-          'js/tinymce/skins/lightgray/content.mobile.min.css': 'src/skins/lightgray/main/less/mobile/content.less'
+          'dist/skins/lightgray/content.mobile.min.css': 'src/skins/lightgray/main/less/mobile/content.less'
         }
       },
       content: {
@@ -229,7 +229,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: {
-          'js/tinymce/skins/lightgray/content.min.css': 'src/skins/lightgray/main/less/desktop/Content.less'
+          'dist/skins/lightgray/content.min.css': 'src/skins/lightgray/main/less/desktop/Content.less'
         }
       },
       'content-inline': {
@@ -239,7 +239,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: {
-          'js/tinymce/skins/lightgray/content.inline.min.css': 'src/skins/lightgray/main/less/desktop/Content.Inline.less'
+          'dist/skins/lightgray/content.inline.min.css': 'src/skins/lightgray/main/less/desktop/Content.Inline.less'
         }
       }
     },
@@ -256,20 +256,20 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            src: 'js/tinymce/tinymce.js',
-            dest: 'js/tinymce/tinymce.js'
+            src: 'dist/tinymce.js',
+            dest: 'dist/tinymce.js'
           },
           {
-            src: 'js/tinymce/tinymce.min.js',
-            dest: 'js/tinymce/tinymce.min.js'
+            src: 'dist/tinymce.min.js',
+            dest: 'dist/tinymce.min.js'
           },
           {
             src: 'src/core/main/text/readme_lang.md',
-            dest: 'js/tinymce/langs/readme.md'
+            dest: 'dist/langs/readme.md'
           },
           {
             src: 'LICENSE.TXT',
-            dest: 'js/tinymce/license.txt'
+            dest: 'dist/license.txt'
           }
         ]
       },
@@ -284,23 +284,23 @@ module.exports = function (grunt) {
               '!*.json',
               '!*.md'
             ],
-            dest: 'js/tinymce/skins/lightgray/fonts'
+            dest: 'dist/skins/lightgray/fonts'
           },
           {
             expand: true,
             flatten: true,
             cwd: 'src/skins/lightgray/main/img',
             src: '**',
-            dest: 'js/tinymce/skins/lightgray/img'
+            dest: 'dist/skins/lightgray/img'
           }
         ]
       },
       plugins: {
         files: [
-          { expand: true, cwd: 'src/plugins/compat3x/main', src: ['img/**'], dest: 'js/tinymce/plugins/compat3x' },
-          { expand: true, cwd: 'src/plugins/compat3x/main', src: ['css/**'], dest: 'js/tinymce/plugins/compat3x' },
-          { expand: true, cwd: 'src/plugins/compat3x/main/js', src: ['utils/**', 'plugin.js', 'tiny_mce_popup.js'], dest: 'js/tinymce/plugins/compat3x' },
-          { src: 'src/plugins/codesample/main/css/prism.css', dest: 'js/tinymce/plugins/codesample/css/prism.css' }
+          { expand: true, cwd: 'src/plugins/compat3x/main', src: ['img/**'], dest: 'dist/plugins/compat3x' },
+          { expand: true, cwd: 'src/plugins/compat3x/main', src: ['css/**'], dest: 'dist/plugins/compat3x' },
+          { expand: true, cwd: 'src/plugins/compat3x/main/js', src: ['utils/**', 'plugin.js', 'tiny_mce_popup.js'], dest: 'dist/plugins/compat3x' },
+          { src: 'src/plugins/codesample/main/css/prism.css', dest: 'dist/plugins/codesample/css/prism.css' }
         ]
       },
       'emoticons-plugin': {
@@ -310,18 +310,18 @@ module.exports = function (grunt) {
             expand: true,
             cwd: 'src/plugins/emoticons/main/img',
             src: '*.gif',
-            dest: 'js/tinymce/plugins/emoticons/img/'
+            dest: 'dist/plugins/emoticons/img/'
           }
         ]
       },
       'help-plugin': {
         files: [
-          { src: 'src/plugins/help/main/img/logo.png', dest: 'js/tinymce/plugins/help/img/logo.png' }
+          { src: 'src/plugins/help/main/img/logo.png', dest: 'dist/plugins/help/img/logo.png' }
         ]
       },
       'visualblocks-plugin': {
         files: [
-          { src: 'src/plugins/visualblocks/main/css/visualblocks.css', dest: 'js/tinymce/plugins/visualblocks/css/visualblocks.css' }
+          { src: 'src/plugins/visualblocks/main/css/visualblocks.css', dest: 'dist/plugins/visualblocks/css/visualblocks.css' }
         ]
       }
     },
@@ -334,24 +334,24 @@ module.exports = function (grunt) {
             'js/**/plugin.js',
             'js/**/theme.js',
             'js/**/*.map',
-            'js/tinymce/tinymce.full.min.js',
-            'js/tinymce/plugins/moxiemanager',
-            'js/tinymce/plugins/compat3x',
-            'js/tinymce/plugins/visualblocks/img',
-            'js/tinymce/skins/*/fonts/*.json',
-            'js/tinymce/skins/*/fonts/readme.md',
+            'dist/tinymce.full.min.js',
+            'dist/plugins/moxiemanager',
+            'dist/plugins/compat3x',
+            'dist/plugins/visualblocks/img',
+            'dist/skins/*/fonts/*.json',
+            'dist/skins/*/fonts/readme.md',
             'readme.md'
           ],
           to: 'tmp/tinymce_<%= pkg.version %>.zip'
         },
         src: [
-          'js/tinymce/langs',
-          'js/tinymce/plugins',
-          'js/tinymce/skins',
-          'js/tinymce/themes',
-          'js/tinymce/tinymce.min.js',
-          'js/tinymce/jquery.tinymce.min.js',
-          'js/tinymce/license.txt',
+          'dist/langs',
+          'dist/plugins',
+          'dist/skins',
+          'dist/themes',
+          'dist/tinymce.min.js',
+          'dist/jquery.tinymce.min.js',
+          'dist/license.txt',
           'changelog.txt',
           'LICENSE.TXT',
           'readme.md'
@@ -366,7 +366,7 @@ module.exports = function (grunt) {
             'src/**/scratch',
             'src/**/lib',
             'src/**/dependency',
-            'js/tinymce/tinymce.full.min.js',
+            'dist/tinymce.full.min.js',
             'js/tests/.jshintrc'
           ],
           to: 'tmp/tinymce_<%= pkg.version %>_dev.zip'
@@ -393,7 +393,7 @@ module.exports = function (grunt) {
             zip.addData('dist/version.txt', packageData.version);
           },
           pathFilter: function (zipFilePath) {
-            return zipFilePath.replace('js/tinymce/', 'dist/');
+            return zipFilePath.replace('dist/', 'dist/');
           },
           excludes: [
             'js/**/config',
@@ -406,41 +406,41 @@ module.exports = function (grunt) {
             'js/**/*.dev.js',
             'js/**/*.dev.svg',
             'js/**/*.map',
-            'js/tinymce/tinymce.full.min.js',
-            'js/tinymce/plugins/moxiemanager',
-            'js/tinymce/plugins/visualblocks/img',
-            'js/tinymce/skins/*/fonts/*.json',
-            'js/tinymce/skins/*/fonts/*.dev.svg',
-            'js/tinymce/skins/*/fonts/readme.md',
+            'dist/tinymce.full.min.js',
+            'dist/plugins/moxiemanager',
+            'dist/plugins/visualblocks/img',
+            'dist/skins/*/fonts/*.json',
+            'dist/skins/*/fonts/*.dev.svg',
+            'dist/skins/*/fonts/readme.md',
             'readme.md',
             'js/tests/.jshintrc'
           ],
           concat: [
             {
               src: [
-                'js/tinymce/tinymce.min.js',
-                'js/tinymce/themes/*/theme.min.js',
-                'js/tinymce/plugins/*/plugin.min.js',
-                '!js/tinymce/plugins/compat3x/plugin.min.js',
-                '!js/tinymce/plugins/example/plugin.min.js',
-                '!js/tinymce/plugins/example_dependency/plugin.min.js'
+                'dist/tinymce.min.js',
+                'dist/themes/*/theme.min.js',
+                'dist/plugins/*/plugin.min.js',
+                '!dist/plugins/compat3x/plugin.min.js',
+                '!dist/plugins/example/plugin.min.js',
+                '!dist/plugins/example_dependency/plugin.min.js'
               ],
 
               dest: [
-                'js/tinymce/tinymce.min.js'
+                'dist/tinymce.min.js'
               ]
             }
           ],
           to: 'tmp/tinymce_<%= pkg.version %>_cdn.zip'
         },
         src: [
-          'js/tinymce/jquery.tinymce.min.js',
-          'js/tinymce/tinymce.js',
-          'js/tinymce/langs',
-          'js/tinymce/plugins',
-          'js/tinymce/skins',
-          'js/tinymce/themes',
-          'js/tinymce/license.txt'
+          'dist/jquery.tinymce.min.js',
+          'dist/tinymce.js',
+          'dist/langs',
+          'dist/plugins',
+          'dist/skins',
+          'dist/themes',
+          'dist/license.txt'
         ]
       },
 
@@ -457,18 +457,18 @@ module.exports = function (grunt) {
             'js/**/*.dev.svg',
             'js/**/*.dev.js',
             'js/**/*.map',
-            'js/tinymce/tinymce.full.min.js',
-            'js/tinymce/plugins/moxiemanager',
-            'js/tinymce/plugins/example',
-            'js/tinymce/plugins/example_dependency',
-            'js/tinymce/plugins/compat3x',
-            'js/tinymce/plugins/visualblocks/img',
-            'js/tinymce/skins/*/fonts/*.json',
-            'js/tinymce/skins/*/fonts/readme.md'
+            'dist/tinymce.full.min.js',
+            'dist/plugins/moxiemanager',
+            'dist/plugins/example',
+            'dist/plugins/example_dependency',
+            'dist/plugins/compat3x',
+            'dist/plugins/visualblocks/img',
+            'dist/skins/*/fonts/*.json',
+            'dist/skins/*/fonts/readme.md'
           ],
           pathFilter: function (zipFilePath) {
-            if (zipFilePath.indexOf('js/tinymce/') === 0) {
-              return zipFilePath.substr('js/tinymce/'.length);
+            if (zipFilePath.indexOf('dist/') === 0) {
+              return zipFilePath.substr('dist/'.length);
             }
 
             return zipFilePath;
@@ -532,32 +532,32 @@ module.exports = function (grunt) {
 
             zip.addFile(
               'jquery.tinymce.js',
-              'js/tinymce/jquery.tinymce.min.js'
+              'dist/jquery.tinymce.min.js'
             );
 
             var getDirs = zipUtils.getDirectories(grunt, this.excludes);
 
             zipUtils.addIndexFiles(
               zip,
-              getDirs('js/tinymce/plugins'),
+              getDirs('dist/plugins'),
               zipUtils.generateIndex('plugins', 'plugin')
             );
             zipUtils.addIndexFiles(
               zip,
-              getDirs('js/tinymce/themes'),
+              getDirs('dist/themes'),
               zipUtils.generateIndex('themes', 'theme')
             );
           },
           to: 'tmp/tinymce_<%= pkg.version %>_component.zip'
         },
         src: [
-          'js/tinymce/skins',
-          'js/tinymce/plugins',
-          'js/tinymce/themes',
-          'js/tinymce/tinymce.js',
-          'js/tinymce/tinymce.min.js',
-          'js/tinymce/jquery.tinymce.min.js',
-          'js/tinymce/license.txt',
+          'dist/skins',
+          'dist/plugins',
+          'dist/themes',
+          'dist/tinymce.js',
+          'dist/tinymce.min.js',
+          'dist/jquery.tinymce.min.js',
+          'dist/license.txt',
           'changelog.txt',
           'readme.md'
         ]
@@ -594,19 +594,19 @@ module.exports = function (grunt) {
             'js/**/*.dev.svg',
             'js/**/*.dev.js',
             'js/**/*.map',
-            'js/tinymce/tinymce.full.min.js'
+            'dist/tinymce.full.min.js'
           ],
           outputDir: 'tmp'
         },
         files: [
-          { src: 'js/tinymce/langs', dest: '/content/scripts/tinymce/langs' },
-          { src: 'js/tinymce/plugins', dest: '/content/scripts/tinymce/plugins' },
-          { src: 'js/tinymce/themes', dest: '/content/scripts/tinymce/themes' },
-          { src: 'js/tinymce/skins', dest: '/content/scripts/tinymce/skins' },
-          { src: 'js/tinymce/tinymce.js', dest: '/content/scripts/tinymce/tinymce.js' },
-          { src: 'js/tinymce/tinymce.min.js', dest: '/content/scripts/tinymce/tinymce.min.js' },
-          { src: 'js/tinymce/jquery.tinymce.min.js', dest: '/content/scripts/tinymce/jquery.tinymce.min.js' },
-          { src: 'js/tinymce/license.txt', dest: '/content/scripts/tinymce/license.txt' }
+          { src: 'dist/langs', dest: '/content/scripts/tinymce/langs' },
+          { src: 'dist/plugins', dest: '/content/scripts/tinymce/plugins' },
+          { src: 'dist/themes', dest: '/content/scripts/tinymce/themes' },
+          { src: 'dist/skins', dest: '/content/scripts/tinymce/skins' },
+          { src: 'dist/tinymce.js', dest: '/content/scripts/tinymce/tinymce.js' },
+          { src: 'dist/tinymce.min.js', dest: '/content/scripts/tinymce/tinymce.min.js' },
+          { src: 'dist/jquery.tinymce.min.js', dest: '/content/scripts/tinymce/jquery.tinymce.min.js' },
+          { src: 'dist/license.txt', dest: '/content/scripts/tinymce/license.txt' }
         ]
       },
 
@@ -636,20 +636,20 @@ module.exports = function (grunt) {
             'js/**/*.dev.svg',
             'js/**/*.dev.js',
             'js/**/*.map',
-            'js/tinymce/tinymce.full.min.js'
+            'dist/tinymce.full.min.js'
           ],
           outputDir: 'tmp'
         },
 
         files: [
-          { src: 'js/tinymce/langs', dest: '/content/scripts/tinymce/langs' },
-          { src: 'js/tinymce/plugins', dest: '/content/scripts/tinymce/plugins' },
-          { src: 'js/tinymce/themes', dest: '/content/scripts/tinymce/themes' },
-          { src: 'js/tinymce/skins', dest: '/content/scripts/tinymce/skins' },
-          { src: 'js/tinymce/tinymce.js', dest: '/content/scripts/tinymce/tinymce.js' },
-          { src: 'js/tinymce/tinymce.min.js', dest: '/content/scripts/tinymce/tinymce.min.js' },
-          { src: 'js/tinymce/jquery.tinymce.min.js', dest: '/content/scripts/tinymce/jquery.tinymce.min.js' },
-          { src: 'js/tinymce/license.txt', dest: '/content/scripts/tinymce/license.txt' }
+          { src: 'dist/langs', dest: '/content/scripts/tinymce/langs' },
+          { src: 'dist/plugins', dest: '/content/scripts/tinymce/plugins' },
+          { src: 'dist/themes', dest: '/content/scripts/tinymce/themes' },
+          { src: 'dist/skins', dest: '/content/scripts/tinymce/skins' },
+          { src: 'dist/tinymce.js', dest: '/content/scripts/tinymce/tinymce.js' },
+          { src: 'dist/tinymce.min.js', dest: '/content/scripts/tinymce/tinymce.min.js' },
+          { src: 'dist/jquery.tinymce.min.js', dest: '/content/scripts/tinymce/jquery.tinymce.min.js' },
+          { src: 'dist/license.txt', dest: '/content/scripts/tinymce/license.txt' }
         ]
       }
     },
@@ -657,29 +657,29 @@ module.exports = function (grunt) {
     bundle: {
       minified: {
         options: {
-          themesDir: 'js/tinymce/themes',
-          pluginsDir: 'js/tinymce/plugins',
+          themesDir: 'dist/themes',
+          pluginsDir: 'dist/plugins',
           pluginFileName: 'plugin.min.js',
           themeFileName: 'theme.min.js',
-          outputPath: 'js/tinymce/tinymce.full.min.js'
+          outputPath: 'dist/tinymce.full.min.js'
         },
 
         src: [
-          'js/tinymce/tinymce.min.js'
+          'dist/tinymce.min.js'
         ]
       },
 
       source: {
         options: {
-          themesDir: 'js/tinymce/themes',
-          pluginsDir: 'js/tinymce/plugins',
+          themesDir: 'dist/themes',
+          pluginsDir: 'dist/plugins',
           pluginFileName: 'plugin.js',
           themeFileName: 'theme.js',
-          outputPath: 'js/tinymce/tinymce.full.js'
+          outputPath: 'dist/tinymce.full.js'
         },
 
         src: [
-          'js/tinymce/tinymce.js'
+          'dist/tinymce.js'
         ]
       }
     },
@@ -784,8 +784,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build-headers', 'Appends build headers to js files', function () {
     var header = '// ' + packageData.version + ' (' + packageData.date + ')\n';
-    grunt.file.write('js/tinymce/tinymce.js', header + grunt.file.read('js/tinymce/tinymce.js'));
-    grunt.file.write('js/tinymce/tinymce.min.js', header + grunt.file.read('js/tinymce/tinymce.min.js'));
+    grunt.file.write('dist/tinymce.js', header + grunt.file.read('dist/tinymce.js'));
+    grunt.file.write('dist/tinymce.min.js', header + grunt.file.read('dist/tinymce.min.js'));
   });
 
   require('load-grunt-tasks')(grunt);
