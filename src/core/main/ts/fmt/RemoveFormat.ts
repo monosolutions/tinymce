@@ -374,8 +374,13 @@ const remove = function (ed, name, vars?, node?, similar?) {
     // Grab the children first since the nodelist might be changed
     children = Tools.grep(node.childNodes);
 
+    const evaluateCondition= function customConditionate(condition) {
+        if (EditorManager.settings.make_noneditable_stylable && condition == 'mceNonEditable') {
+            return true;
+        }
+    }
     // Process current node
-    if (contentEditable && !hasContentEditableState) {
+    if (contentEditable && !hasContentEditableState || evaluateCondition(node.classList)) {
       for (i = 0, l = formatList.length; i < l; i++) {
         if (removeFormat(ed, formatList[i], vars, node, node)) {
           break;
@@ -511,7 +516,7 @@ const remove = function (ed, name, vars?, node?, similar?) {
     return;
   }
 
-  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable === 'undefined') {
+  if (dom.getContentEditable(selection.getNode()) === 'false' && !EditorManager.settings.make_noneditable_stylable) {
     node = selection.getNode();
     for (let i = 0, l = formatList.length; i < l; i++) {
       if (formatList[i].ceFalseOverride) {
