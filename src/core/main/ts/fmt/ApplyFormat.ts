@@ -84,6 +84,7 @@ const applyFormat = function (ed, name, vars?, node?) {
     }
   };
 
+
   const applyNodeStyle = function (formatList, node) {
     let found = false;
 
@@ -155,9 +156,13 @@ const applyFormat = function (ed, name, vars?, node?) {
           return;
         }
 
+        const evaluateCondition = function abc(condition){
+            return EditorManager.settings.make_noneditable_stylable ? true: condition;
+        };
+
         // Can we rename the block
         // TODO: Break this if up, too complex
-        if (/*contentEditable && !hasContentEditableState &&*/  format.block &&
+        if ( evaluateCondition(contentEditable && !hasContentEditableState) &&  format.block &&
           !format.wrapper && FormatUtils.isTextBlock(ed, nodeName) && FormatUtils.isValid(ed, parentName, wrapName)) {
           node = dom.rename(node, wrapName);
           setElementFormat(node);
@@ -179,7 +184,7 @@ const applyFormat = function (ed, name, vars?, node?) {
 
         // Is it valid to wrap this item
         // TODO: Break this if up, too complex
-        if (/*contentEditable && !hasContentEditableState && */ FormatUtils.isValid(ed, wrapName, nodeName) && FormatUtils.isValid(ed, parentName, wrapName) &&
+        if (evaluateCondition(contentEditable && !hasContentEditableState ) && FormatUtils.isValid(ed, wrapName, nodeName) && FormatUtils.isValid(ed, parentName, wrapName) &&
           !(!nodeSpecific && node.nodeType === 3 &&
             node.nodeValue.length === 1 &&
             node.nodeValue.charCodeAt(0) === 65279) &&
@@ -297,7 +302,7 @@ const applyFormat = function (ed, name, vars?, node?) {
     });
   };
 
-  if (dom.getContentEditable(selection.getNode()) === 'false' && EditorManager.settings.makeNonEditableStylable === 'undefined') {
+  if (dom.getContentEditable(selection.getNode()) === 'false' && !EditorManager.settings.make_noneditable_stylable) {
     node = selection.getNode();
     for (let i = 0, l = formatList.length; i < l; i++) {
       if (formatList[i].ceFalseOverride && dom.is(node, formatList[i].selector)) {
