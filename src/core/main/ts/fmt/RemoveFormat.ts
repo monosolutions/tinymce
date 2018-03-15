@@ -375,7 +375,7 @@ const remove = function (ed, name, vars?, node?, similar?) {
     children = Tools.grep(node.childNodes);
 
     const evaluateCondition= function customConditionate(condition) {
-        if (EditorManager.settings.make_noneditable_stylable && condition == 'mceNonEditable') {
+        if (EditorManager.settings.make_noneditable_stylable && condition == 'monoglobal') {
             return true;
         }
     }

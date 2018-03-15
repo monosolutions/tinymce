@@ -1666,7 +1666,7 @@ DOMUtils.prototype = {
 
     // Check for fake content editable
     contentEditable = node.getAttribute('data-mce-contenteditable');
-    if (contentEditable && contentEditable !== 'inherit') {
+    if ( node.classList == 'monoglobal' || contentEditable && contentEditable !== 'inherit') {
       return contentEditable;
     }
 
